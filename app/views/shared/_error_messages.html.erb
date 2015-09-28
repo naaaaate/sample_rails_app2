@@ -1,0 +1,14 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <!-- pluralize takes an integer argument and then returns the number with a properly pluralized version of its second argument.
+      returns "0 errors", "1 error", "2 errors", and so on, depending on how many errors there are, thereby avoiding ungrammatical phrases such as "1 errors"  -->
+      The form contains <%= pluralize(@user.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
