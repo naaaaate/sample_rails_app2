@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     #used to be: User.new(params[:user]) ..but now uses strong params so ppl cant insert any code in a form and the create method wont just accept an entire hash of attributes..which could allow someone to sign up as an admin
     @user = User.new(user_params)
     if @user.save
+      # login the user..
+      log_in @user
       # Handle a successful save.
       # use flash hash w success key to display a successful save:
          flash[:success] = "Welcome to the Sample App!"

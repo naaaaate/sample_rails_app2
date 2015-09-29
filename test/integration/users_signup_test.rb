@@ -23,7 +23,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password:              "password",
                                             password_confirmation: "password" }
     end
+    # we show the page..
     assert_template 'users/show'
+    # we assert user is logged in... in test-testhelpers, we put in helper methods that get used in ALL the TESTS..
+    assert is_logged_in?
   end
 
 

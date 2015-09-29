@@ -1,0 +1,30 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <!-- :session is the object type we are creating , and the url is the path it goes to on submission of form.. which here is the post method for login_path -->
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <!-- params hash will be params[:session][:email] and params[:session][:password]  -->
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <!-- adding remember me checkbox.. -->
+        <!-- note: params[:session}[:remember_me] tells u if checkbox is checked or not.. 1 or 0 ..  -->
+        <!-- so in sessions controller, after logging in user, we should remember the user only if that checkbox is checked. -->
+      <%= f.label :remember_me, class:'checkbox inline' do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember Me On This Computer</span>
+      <% end %>
+
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
