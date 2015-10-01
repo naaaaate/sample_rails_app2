@@ -27,6 +27,12 @@ module SessionsHelper
   end
 
 
+  # Returns true if the given user is the current user.
+  def current_user?(user)
+    user == current_user
+  end
+
+
 
 # returns current logged in user (if any)
   def current_user
@@ -100,6 +106,17 @@ module SessionsHelper
 
     # if we called current_user before destroy action and didnt redirect immediately, then could cause an error bc there would be an @current_user lying around.. so bc its security related its a good idea to set this to nil.
     @current_user = nil
+  end
+
+  # Redirects to stored location (or to the default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
   end
 
 end

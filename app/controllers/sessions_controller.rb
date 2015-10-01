@@ -20,7 +20,9 @@ class SessionsController < ApplicationController
      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # NOTE: remember(user) and forget(user) are session helper methods.
 
-     redirect_to user
+     redirect_back_or user
+
+     # redirect_to user
         # now we redirect to the user's profile page which is: /user/:id of the user
 
 

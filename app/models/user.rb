@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
  has_secure_password
   # using this has secure password creates virtual attributes that dont exist in the databse: password and password_confirmation.
 
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def User.digest(string)
     # cost is the cost parameter that determines the computational cost to calculate the hash. Using a high cost makes it computationally intractable to use the hash to determine the original password, which is an important security precaution in a production environment, but in tests we want the digest method to be as fast as possible.

@@ -7,7 +7,7 @@
         <li><%= link_to "Help",    help_path %></li>
 
         <% if logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
+           <li><%= link_to "Users", users_path %></li>
           <!-- bootstrap JS, need to include, below for dropdown. -->
           <li clas="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -16,7 +16,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
                 <!--as with RE-DIRECTS from the "USER" at the login on the sessions create controller, it still knows that user...here we can say current_user and rails knows.. its talking about:   user_path(current_user) -->
-                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
                   <!-- Note here we need to tell Rails method delete bc its delete route.. -->
